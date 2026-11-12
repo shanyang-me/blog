@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 // Browser checks for the post. Usage: node tools/probe-blog.mjs <base-url> <outdir>
+// Waits for 'load', not network idle: the local Python server has no HTTP range support, so the
+// video keeps one connection open and the page never goes idle (GitHub Pages serves ranges).
 // Prints {widths, consoleErrors, glbBeforeClick, scrollAfterSpace} and saves a full-page screenshot per width.
 import { createRequire } from 'node:module';
 import { mkdirSync, mkdtempSync, readdirSync, readFileSync } from 'node:fs';
@@ -27,10 +29,10 @@ for (const width of [375, 768, 1440]) {
   await page.setViewportSize({ width, height: 900 });
   page.on('console', (m) => { if (m.type() === 'error') result.consoleErrors.push(`${width}: ${m.text()}`); });
   page.on('pageerror', (e) => result.consoleErrors.push(`${width}: ${e.message}`));
-  await page.goto(url, { waitUntil: 'networkidle' });
+  await page.goto(url, { waitUntil: 'load' });
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth);
   result.widths[width] = { overflow };
-  await page.screenshot({ path: join(outdir, `post-${width}.png`), fullPage: true });
+  await page.screenshot({ path: join(outdir, `post-${width}.png`) });
   await page.close();
 }
 
@@ -39,7 +41,7 @@ await page.setViewportSize({ width: 1280, height: 800 });
 let glb = 0;
 page.on('request', (r) => { if (r.url().endsWith('.glb')) glb += 1; });
 page.on('pageerror', (e) => result.consoleErrors.push(`game: ${e.message}`));
-await page.goto(url, { waitUntil: 'networkidle' });
+await page.goto(url, { waitUntil: 'load' });
 result.glbBeforeClick = glb;
 const embed = page.locator('.embed[data-src*="/game/"]');
 await embed.scrollIntoViewIfNeeded();

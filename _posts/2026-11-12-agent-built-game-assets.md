@@ -261,63 +261,34 @@ The agent built a browser shooter around its monster and play-tested it with a b
 
 ### Unreal
 
-The supervising session installed Unreal and wrote a wrapper so a run could build and play without opening a window. The greybox run (33 min, $9.07, 10 rounds) imported all three models intact and hit 57.9 fps with 0 errors. The art pass (77 min, $14.12, 11 rounds) added the kit, the boss, effects and the video at the top, at 55–60 fps with Lumen off.<sup>1</sup> The supervising session re-ran both and got matching results.
+The supervising session installed Unreal, solved four macOS setup issues once, and wrote a wrapper so a run could build and play without opening a window. The greybox run (33 min, $9.07, 10 rounds) imported all three models intact and hit 57.9 fps with 0 errors. The art pass (77 min, $14.12, 11 rounds) added the kit, the boss, effects and the video at the top, at 55–60 fps with Lumen off.<sup>1</sup> The supervising session re-ran both and got matching results.
 
 <figure><img src="{{ a }}/img/ue-play-55.jpg" alt="Unreal greybox bot run at 55 seconds" loading="lazy"><figcaption>Greybox build, bot run at 55 s.</figcaption></figure>
 <figure><img src="{{ a }}/img/ue-boss-roar.jpg" alt="The boss roaring on entry" loading="lazy"><figcaption>Art pass: the boss enters.</figcaption></figure>
 <figure><img src="{{ a }}/img/ue-weak-point.jpg" alt="Hitting a glowing weak point on the boss's back" loading="lazy"><figcaption>Art pass: hitting a weak point on her back.</figcaption></figure>
 
-## What the runs had to fix
-
-Integration was not where the work went. Only the video's leg count needed a human decision. Every run fixed what it could see in screenshots on its own, and nothing caught problems that only show in motion. Four Unreal-on-macOS setup issues (the Metal toolchain, `UE_TELEMETRY_DIR`, keeping editor scripts alive, missing file extensions) were solved once and written into the prompt.
-
-## Cost
+## Cost: agent vs. by hand
 
 <div class="table-wrap" markdown="1">
 
-| Item | Billing | Cost |
-|---|---|---|
-| Turntable video, Kling v4 | fal, paid | $2.35 |
-| Tripo P2, text and image | fal, paid | $2.20 |
-| Blender, text only | Claude, API-equivalent | $3.47 |
-| Blender, from video | Claude, API-equivalent | $5.15 |
-| three.js game | Claude, API-equivalent | $4.63 |
-| Rifle + arms | Claude, API-equivalent | $8.42 |
-| Rigging the Tripo mesh | Claude, API-equivalent | $4.76 |
-| Unreal greybox | Claude, API-equivalent | $9.07 |
-| Level kit | Claude, API-equivalent | $6.48 |
-| Boss | Claude, API-equivalent | $7.30 |
-| Unreal art pass | Claude, API-equivalent | $14.12 |
-| **Claude subtotal** | | **$63.40** |
-| **fal subtotal** | | **$4.55** |
-| **Total** | | **$67.95** |
+| What was built | Agent time | Agent cost | By hand (person-days) |
+|---|---:|---:|---:|
+| Turntable video (Kling) | 4 min | $2.35 | – |
+| Monster, from video (Blender) | 13.1 min | $5.15 | 6–8 |
+| Monster, text only (Blender, comparison) | 8.7 min | $3.47 | – |
+| Tripo meshes ×2 | 3.3 min | $2.20 | – |
+| Second monster: rig the Tripo mesh | 10.7 min | $4.76 | 2–3 |
+| Rifle and arms | 35.8 min | $8.42 | 8–12 |
+| Level kit, 12 pieces | 56 min | $6.48 | 8–12 |
+| Boss | 31 min | $7.30 | 13–20 |
+| three.js game | 17.6 min | $4.63 | – |
+| Unreal greybox: gameplay code and bot tests | 33 min | $9.07 | 8–12 |
+| Unreal art pass: level, lighting, effects, video | 77 min | $14.12 | 7–11 |
+| **Total** | **4.8 h** | **$67.95** | **about 50–80** |
 
 </div>
 
-Not included: installing Unreal and Xcode, the supervising session, and my own time.
-
-### Against doing it by hand
-
-An estimate from typical industry hours for mid-level indie work, not quotes:
-
-<div class="table-wrap" markdown="1">
-
-| What the agent built | Manual estimate (person-days) |
-|---|---:|
-| Swarm enemy: model, texture, rig, animate | 6–8 |
-| Second enemy: rig and animate | 2–3 |
-| Arms and rifle | 8–12 |
-| Level kit, 12 pieces | 8–12 |
-| Boss | 13–20 |
-| UE gameplay code and bot tests | 8–12 |
-| Level assembly and lighting | 3–5 |
-| Five effects | 3–5 |
-| Video | 1 |
-| **Total** | **about 50–80** |
-
-</div>
-
-That is roughly $21,000–55,000 at freelance rates and three to six weeks, against $67.95 and 4.7 hours. The agent's output is at prototype quality; reaching a shippable bar would take an estimated 30–50% of the manual art effort.
+Agent cost is $63.40 of Claude at API-equivalent prices plus $4.55 billed by fal; it leaves out installing Unreal, the supervising session and my time. By-hand figures are estimates from typical industry hours for mid-level indie work, not quotes, and come to roughly $21,000–55,000 at freelance rates. The agent's output is at prototype quality; reaching a shippable bar would take an estimated 30–50% of the manual art effort.
 
 ## Limitations and next steps
 

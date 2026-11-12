@@ -155,7 +155,7 @@ const groups = {
     for (const need of ['person-days', 'not quotes', 'prototype quality', '30–50%']) {
       if (!body.includes(need)) fail('post', `manual comparison missing "${need}"`);
     }
-    if (!/<td>Boss<\/td>\s*<td[^>]*>13–20<\/td>/.test(body)) fail('post', 'manual estimate table missing the boss row');
+    if (!/<td>Boss<\/td>(\s*<td[^>]*>[^<]*<\/td>){2}\s*<td[^>]*>13–20<\/td>/.test(body)) fail('post', 'manual estimate table missing the boss row');
     const minutes = +(html.match(/(\d+) min read/) || [0, 999])[1];
     if (minutes > 25) fail('post', `read time ${minutes} min counts the appendix`);
   },
