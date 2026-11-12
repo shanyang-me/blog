@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% include head-blog.html %}
+</head>
+<body>
+  <main class="blog">
+    <nav class="blog-nav"><a href="https://shanyang.me/">Shan Yang</a><a href="{{ '/' | relative_url }}">Blog</a><a href="{{ '/feed.xml' | relative_url }}">RSS</a></nav>
+    <article>
+      <h1>{{ page.title }}</h1>
+      {% if page.subtitle %}<p class="subtitle">{{ page.subtitle }}</p>{% endif %}
+      {% assign words = content | split: 'id="appendix-prompts"' | first | strip_html | number_of_words %}
+      <p class="meta">{{ page.date | date: "%B %-d, %Y" }} · {{ words | divided_by: 220 | plus: 1 }} min read · Shan Yang</p>
+      <div class="post-body">
+{{ content }}
+        <section class="cite">
+          <h2>Citation</h2>
+          <p>Please cite this post as:</p>
+<pre><code>@misc{ {{- page.bibtex_key -}},
+  author = {Yang, Shan},
+  title  = { {{- page.title -}} },
+  year   = { {{- page.date | date: "%Y" -}} },
+  month  = { {{- page.date | date: "%b" -}} },
+  url    = { {{- page.url | absolute_url -}} }
+}</code></pre>
+        </section>
+        <p><a href="{{ '/' | relative_url }}">← All posts</a></p>
+      </div>
+    </article>
+  </main>
+  <script>
+    // Embeds load only on click: the game is ~10 MB and should not cost readers who never press Play.
+    document.querySelectorAll('.embed[data-src]').forEach(function (box) {
+      var btn = box.querySelector('button');
+      if (!btn) return;
+      btn.addEventListener('click', function () {
+        var frame = document.createElement('iframe');
+        frame.src = box.getAttribute('data-src');
+        frame.title = box.getAttribute('data-title') || 'Embedded demo';
+        frame.allow = 'pointer-lock; fullscreen';
+        frame.setAttribute('allowfullscreen', '');
+        box.innerHTML = '';
+        box.appendChild(frame);
+        frame.focus();
+      });
+    });
+  </script>
+</body>
+</html>

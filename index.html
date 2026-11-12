@@ -1,0 +1,26 @@
+---
+title: Blog
+description: Notes on AI for games, agents and RL post-training by Shan Yang.
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% include head-blog.html %}
+</head>
+<body>
+  <main class="blog">
+    <nav class="blog-nav"><a href="https://shanyang.me/">Shan Yang</a><a href="{{ '/' | relative_url }}">Blog</a><a href="{{ '/feed.xml' | relative_url }}">RSS</a></nav>
+    <h1>Blog</h1>
+    <p class="subtitle">Experiment reports on AI for games, coding agents and RL post-training.</p>
+    <ul class="post-list">
+      {% for post in site.posts %}
+      <li>
+        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        <div class="date">{{ post.date | date: "%B %-d, %Y" }}</div>
+        <p>{{ post.description }}</p>
+      </li>
+      {% endfor %}
+    </ul>
+  </main>
+</body>
+</html>

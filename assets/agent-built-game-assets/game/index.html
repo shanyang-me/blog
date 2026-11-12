@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Scuttler Swarm</title>
+<link rel="icon" href="data:,">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #0b0e12; color: #dfe8ee;
+    font: 14px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; user-select: none; }
+  canvas { display: block; }
+  #hud { position: fixed; left: 16px; top: 12px; display: flex; gap: 18px; padding: 8px 12px;
+    background: rgba(8, 12, 16, .6); border: 1px solid rgba(160, 200, 220, .25); border-radius: 4px; pointer-events: none; }
+  #hud b { color: #fff; font-weight: 600; }
+  #hpbar { position: fixed; left: 16px; bottom: 16px; width: 260px; height: 14px; background: rgba(8, 12, 16, .6);
+    border: 1px solid rgba(160, 200, 220, .35); border-radius: 3px; pointer-events: none; }
+  #hpfill { height: 100%; width: 100%; background: #5fd38a; border-radius: 2px; }
+  #cross { position: fixed; left: 50%; top: 50%; width: 22px; height: 22px; margin: -11px 0 0 -11px; pointer-events: none; }
+  #cross::before, #cross::after { content: ''; position: absolute; background: #e8fff4; box-shadow: 0 0 2px #000; }
+  #cross::before { left: 10px; top: 0; width: 2px; height: 22px; clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%, 0 65%, 100% 65%, 100% 100%, 0 100%); }
+  #cross::after { top: 10px; left: 0; height: 2px; width: 22px; clip-path: polygon(0 0, 35% 0, 35% 100%, 0 100%, 0 0, 65% 0, 100% 0, 100% 100%, 65% 100%, 65% 0); }
+  #cross.hit::before, #cross.hit::after { background: #ff5a4a; }
+  #hurt { position: fixed; inset: 0; pointer-events: none; opacity: 0;
+    background: radial-gradient(ellipse at center, rgba(255, 0, 0, 0) 45%, rgba(200, 10, 0, .75) 100%); }
+  #banner { position: fixed; left: 0; right: 0; top: 18%; text-align: center; font-size: 30px; letter-spacing: 4px;
+    color: #fff; text-shadow: 0 2px 8px #000; pointer-events: none; opacity: 0; transition: opacity .3s; }
+  #overlay { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 14px; background: rgba(6, 9, 12, .72); text-align: center; }
+  #overlay h1 { margin: 0; font-size: 44px; letter-spacing: 6px; }
+  #overlay p { margin: 0; max-width: 520px; color: #a9bac6; }
+  #overlay button { font: inherit; font-size: 16px; padding: 10px 26px; color: #06110b; background: #5fd38a; border: 0;
+    border-radius: 4px; cursor: pointer; }
+  #overlay.hidden { display: none; }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://unpkg.com/three@0.170.0/build/three.module.js",
+  "three/addons/": "https://unpkg.com/three@0.170.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<div id="hud">
+  <span>HP <b id="h-hp">100</b></span>
+  <span>WAVE <b id="h-wave">-</b></span>
+  <span>ALIVE <b id="h-alive">0</b></span>
+  <span>KILLS <b id="h-kills">0</b></span>
+  <span>AMMO <b id="h-ammo">30/30</b></span>
+  <span>FPS <b id="h-fps">0</b></span>
+</div>
+<div id="hpbar"><div id="hpfill"></div></div>
+<div id="cross"></div>
+<div id="hurt"></div>
+<div id="banner"></div>
+<div id="overlay">
+  <h1 id="o-title">SCUTTLER SWARM</h1>
+  <p id="o-text">Loading…</p>
+  <button id="o-btn" hidden>Start</button>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

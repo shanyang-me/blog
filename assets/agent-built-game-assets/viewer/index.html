@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Model viewer</title>
+<link rel="icon" href="data:,">
+<style>
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #c9ced3; font: 13px/1.4 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #1e293b; }
+  canvas { display: block; touch-action: none; }
+  #ui { position: fixed; left: 10px; top: 10px; right: 10px; display: flex; flex-wrap: wrap; gap: 6px; pointer-events: none; }
+  #ui button { pointer-events: auto; font: inherit; padding: 6px 10px; min-height: 32px; border-radius: 6px; border: 1px solid #94a3b8; background: rgba(255,255,255,.85); color: #1e293b; cursor: pointer; }
+  #ui button[aria-pressed="true"] { border-color: #2563eb; color: #2563eb; font-weight: 600; }
+  #ui .sep { width: 100%; height: 0; }
+  #info { position: fixed; left: 10px; bottom: 8px; font-family: ui-monospace, Menlo, monospace; font-size: 12px; color: #334155; }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://unpkg.com/three@0.170.0/build/three.module.js",
+  "three/addons/": "https://unpkg.com/three@0.170.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<div id="ui" role="toolbar" aria-label="Model and clip"></div>
+<div id="info">Loading…</div>
+<script type="module" src="./viewer.js"></script>
+</body>
+</html>

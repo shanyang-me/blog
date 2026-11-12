@@ -1,0 +1,6 @@
+_site/
+.sass-cache/
+.jekyll-cache/
+drafts/
+tools/*.local.json
+.DS_Store

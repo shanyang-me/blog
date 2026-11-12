@@ -1,0 +1,11 @@
+title: Shan Yang
+author: Shan Yang
+description: Experiment reports on AI for games, coding agents and RL post-training.
+url: https://shanyang.me
+baseurl: /blog
+plugins:
+  - jekyll-feed
+exclude:
+  - drafts
+  - tools
+  - README.md
