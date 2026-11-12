@@ -27,9 +27,9 @@ bibtex_key: yang2026agentgameassets
 - **The models work in real games.** They went into a browser game and into Unreal Engine 5 without hand fixes, running at 50–60 frames per second.
 - **The agent checks its work from screenshots only.** It never watched its animations play, so problems that show only in motion can slip through.
 
-## What Higgsfield showed, and what it leaves out
+## Motivation
 
-Higgsfield's post <a href="https://higgsfield.ai/@higgsfield.studio/blogs/fable-5-2-built-a-playable-shooter-in-3-5-hours">"Fable 5.2 Built a Playable Sci-Fi Shooter in 3.5 Hours"</a> shows Claude Code turning videos of each monster into 3D models and then into an Unreal Engine 5 game. It's an impressive demo, but it only shares one of the real prompts and a 25-second clip. It doesn't say what it cost, how many tries each step took, how much a person helped, or whether the models work in a real game. This post answers those questions by running the same pipeline again with no one helping and recording the time, cost and every fix along the way.
+This study is inspired by Higgsfield's post <a href="https://higgsfield.ai/@higgsfield.studio/blogs/fable-5-2-built-a-playable-shooter-in-3-5-hours">"Fable 5.2 Built a Playable Sci-Fi Shooter in 3.5 Hours"</a>, which shows Claude Code turning videos of each monster into 3D models and then into an Unreal Engine 5 game, shared as one prompt and a 25-second clip. The goal here is to measure what that demo doesn't show: what the pipeline costs, how long each step takes, how many tries it needs, and whether the models work in real games when no one is helping.
 
 
 ## Coding Agent for Game Pipeline
