@@ -21,11 +21,11 @@ bibtex_key: yang2026agentgameassets
 
 **Key results at a glance**
 
-- **Hours instead of weeks, at prototype quality.** Every asset, both games and the level ran unattended for about 4.7 agent-hours and $68, against an estimated 50–80 person-days of manual work. The comparison holds for prototyping, not for shippable art.
-- **Video reference helps, but only for shape.** With an identical prompt, the Blender agent that watched the turntable built a clearly better monster than the one that only read the text ($5.15 vs $3.47). Countable features (leg count) had to be overridden by the text.
-- **The agent can rig a model it didn't build.** Given a ready-made mesh from the 3D generator Tripo, the agent added the skeleton and the walk and die animations for about the same cost and time as modeling from scratch ($5.86 vs. $5.15, 12 vs. 13 minutes). The game then draws the result in one call instead of five.
-- **The models work in real games.** The same files went into a browser game and into Unreal Engine 5 without anyone fixing them by hand, and both games ran at 50–60 frames per second.
-- **The agent checks its own work, but only from still pictures.** After each attempt it took screenshots, spotted problems and fixed them, with no one helping. It never watched its animations play, so problems that only show in motion can slip through.
+- **Hours, not weeks.** All the assets and both games took about 4.7 hours and $68 of agent time, against an estimated 50–80 days of work by hand.
+- **A reference video helps with shape, not counting.** The monster built from the turntable video followed its shape, but the video drew too few legs, so the leg count had to come from the text.
+- **The agent can rig a model it didn't build.** Adding a skeleton and animations to a ready-made Tripo model cost about the same as building one from scratch.
+- **The models work in real games.** They went into a browser game and into Unreal Engine 5 without hand fixes, running at 50–60 frames per second.
+- **The agent checks its work from screenshots only.** It never watched its animations play, so problems that show only in motion can slip through.
 
 ## What Higgsfield showed, and what it leaves out
 
