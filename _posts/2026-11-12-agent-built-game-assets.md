@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "A Coding Agent Is a Better Technical Artist Than Modeler"
-subtitle: "Replicating Higgsfield's turntable → Blender → Unreal game pipeline for about $68"
+title: "4.7 Agent-Hours and $68 vs. 50–80 Person-Days: Rebuilding an AI Shooter with a Coding Agent"
+subtitle: "Monsters, a rifle, a level and a UE5 boss fight, built unattended at prototype quality. The person-days are an estimate; the quality gap is real."
 date: 2026-11-12
-description: "I replicated a published turntable → Blender → Unreal game pipeline with Claude Code, end to end and unattended. The agent rigged, animated and shipped playable assets; its weak spot was modeling, not plumbing."
+description: "I replicated a published turntable → Blender → Unreal game pipeline with Claude Code, end to end and unattended: about $68 and 4.7 agent-hours for work estimated at 50–80 person-days by hand, at prototype quality. Integration is solved; art quality is the gap."
 image: /assets/agent-built-game-assets/og.jpg
 permalink: /agent-built-game-assets/
 bibtex_key: yang2026agentgameassets
@@ -11,13 +11,14 @@ bibtex_key: yang2026agentgameassets
 {% assign a = '/assets/agent-built-game-assets' | relative_url %}
 
 <div class="tldr" markdown="1">
-**TL;DR.** I replicated Higgsfield's turntable video → Blender → Unreal Engine pipeline end to end with Claude Code (Fable 5.2), for **about $68** ($63.40 of API-equivalent Claude usage plus $4.55 paid to fal) and **about 4.7 hours** of unattended agent runtime (two of the runs overlapped). The agent produced rigged, animated monsters, a first-person rifle, a playable three.js shooter and a UE5 arena with a boss fight running at 55–60 fps.
+**TL;DR.** I replicated Higgsfield's turntable video → Blender → Unreal Engine pipeline end to end with Claude Code (Fable 5.2), for **about $68** ($63.40 of API-equivalent Claude usage plus $4.55 paid to fal) and **about 4.7 hours** of unattended agent runtime (two of the runs overlapped). The agent produced rigged, animated monsters, a first-person rifle, a sci-fi level kit, a playable three.js shooter and a UE5 arena with a boss fight running at 55–60 fps. By an estimate from typical industry hours, the same content takes a small team **50–80 person-days** by hand, roughly $21k–55k at freelance rates. The output is at prototype quality, not production quality, and closing that gap would still take an estimated 30–50% of the manual art effort.
 
-Its weak spot was modeling, not plumbing. A video turntable turned out to be a poor spec: the video model drew three or four legs per side on a creature that has five. From-scratch meshes read as programmer art. What worked best was the split a technical artist would recognise: a generative 3D model for the mesh, and the agent for rigging, animation, engine integration and self-checking.
+Integration was the part that worked; art quality was the gap. A video turntable turned out to be a poor spec: the video model drew three or four legs per side on a creature that has five. From-scratch meshes read as programmer art. What worked best was the split a technical artist would recognise: a generative 3D model for the mesh, and the agent for rigging, animation, engine integration and self-checking.
 </div>
 
 **Key results at a glance**
 
+- **Hours instead of weeks, at prototype quality.** Every asset, both games and the level ran unattended for about 4.7 agent-hours and $68, against an estimated 50–80 person-days of manual work. The comparison holds for prototyping, not for shippable art.
 - **Video reference helps, but only for shape.** With an identical prompt, the Blender agent that watched the turntable built a clearly better monster than the one that only read the text ($5.15 vs $3.47). Countable features (leg count) had to be overridden by the text.
 - **Generated mesh + agent rig beat agent modeling.** Rigging a Tripo mesh cost $4.76 and 11 minutes, kept the far better surface, and drew in one call instead of five.
 - **The assets survive real engines.** In a three.js shooter the Blender monster needed no scale or orientation fix and its feet slipped 0.009 m/s. In Unreal, all three GLBs imported with skeletons and clips intact, and a headless greybox build hit 57.9 fps with 0 errors.
@@ -232,7 +233,36 @@ The integration problems were real, but each was solved once and stayed solved. 
 
 The Claude figures are what `claude -p` reports at API prices. These runs were billed to a subscription, so the real marginal cost was lower; an API-keyed pipeline would pay the table price. The total leaves out the time to install Unreal and Xcode, the supervising session, and my own decisions and review.
 
-For scale, a single game-ready enemy by the best route is a turntable plus a video-guided Blender run, about $7.50 and 17 minutes. Generative mesh plus agent rig from the same turntable is about $8.20 and 16 minutes ($2.35 + $1.10 + $4.76); generating the mesh from text instead would drop the video, but this experiment only rigged the image-based mesh. The temptation is to compare $68 against the weeks of artist and engineer time an equivalent prototype would take. That comparison is real for prototyping and misleading for anything shippable, because the quality is not equivalent: rigid boss joints, procedural textures, mechanical motion. The honest version is that the agent turns weeks of prototype work into an afternoon, and production art still needs the last stretch done by people.
+For scale, a single game-ready enemy by the best route is a turntable plus a video-guided Blender run, about $7.50 and 17 minutes. Generative mesh plus agent rig from the same turntable is about $8.20 and 16 minutes ($2.35 + $1.10 + $4.76); generating the mesh from text instead would drop the video, but this experiment only rigged the image-based mesh. The more interesting comparison is with doing the same work by hand.
+
+### Against doing it by hand
+
+I have no human control group, so the manual side is an estimate: typical industry hours for mid-level indie quality, item by item. These are not quotes, and nobody built this content by hand for comparison.
+
+<div class="table-wrap" markdown="1">
+
+| What the agent built | Manual estimate (person-days) |
+|---|---:|
+| Swarm enemy: model, texture, rig, walk and die | 6–8 |
+| Second enemy: rig and animate an existing mesh | 2–3 |
+| First-person arms and rifle: model, rig, four clips | 8–12 |
+| Sci-fi level kit, 12 textured pieces | 8–12 |
+| Boss: model, texture, rig, six clips | 13–20 |
+| UE gameplay code: player, weapon, waves, enemy AI, HUD, boss fight, autoplay tests | 8–12 |
+| Level assembly, lighting, grading | 3–5 |
+| Five Niagara effects | 3–5 |
+| Capture and edit the video | 1 |
+| **Total** | **about 50–80** |
+
+</div>
+
+At $400–700 a day for freelancers, that is roughly $21k–55k and three to six weeks for a team of three or four. The agent's version cost $67.95 and about 4.7 hours of runtime: two to three orders of magnitude cheaper, and days instead of weeks even counting setup.
+
+That ratio is only honest with the quality gap next to it. The agent's output is at prototype quality: the boss is rigidly bound and its joints do not deform, the textures are procedural rather than sculpted or painted, the motion is mechanical, and the level textures blur up close. A manual 50–80 person-day build would look clearly better. A rough estimate is that bringing the agent's art to a shippable bar would still take 30–50% of the manual art effort (re-sculpting, re-rigging, polishing animation), while the gameplay code would need much less. That figure is an estimate too.
+
+Two more things are not in the $68: the time to install Unreal and Xcode and keep the machine healthy, and the human side, meaning the supervising session's orchestration and my decisions and review. Neither is large next to 50 person-days, but neither is zero.
+
+So the comparison that holds up is this: for prototyping and testing whether a game idea plays, the agent turns weeks of mixed art and engineering work into hours. For production art, it gives you a first draft, and people still do the last stretch.
 
 ## Limitations and next steps
 
@@ -242,7 +272,7 @@ For scale, a single game-ready enemy by the best route is a turntable plus a vid
 - **Stills-only self-checks.** The obvious next step is to give the loop motion: render short clips or contact sheets per animation phase and score them. Most of the remaining defects are of exactly that kind.
 - **Web delivery.** The Unreal half does not reach a browser yet. UE 5.9's preview restores a web target (WebAssembly and WebGPU), but it is experimental and requires a source build.
 
-The headline is narrower than "agents can make games". The agent is already a competent technical artist: it rigs, weights, animates, exports, imports and wires assets into two engines, and it catches its own mistakes in anything it can see in a still frame. It is not yet a good modeler, and it should not be the one deciding what a creature looks like.
+The headline is narrower than "agents can make games". From a turntable to a boss fight, the agent built the whole pipeline unattended: it modeled, rigged, weighted, animated, exported, imported and wired assets into two engines, built the level and the gameplay, and caught its own mistakes in anything it could see in a still frame. That is weeks of manual work done in hours. What it did not deliver is art a player would mistake for hand-made: the modeling and the motion are where people still earn their person-days.
 
 <p class="footnote"><sup>1</sup> The first attempt at the art integration run was stopped after 16 minutes by the host's memory reaper (a stray 7 GB editor process was still open). It was restarted unchanged once memory was freed.</p>
 

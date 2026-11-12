@@ -148,6 +148,13 @@ const groups = {
       'game/index.html?enemy=tripo']) {
       if (!body.includes(need)) fail('post', `missing "${need}"`);
     }
+    // Manual-production comparison is the headline; it must carry its method and the quality caveat.
+    const title = (html.match(/<h1>([^<]+)<\/h1>/) || [])[1] || '';
+    if (!title.includes('Person-Days')) fail('post', `title lacks the manual comparison: "${title}"`);
+    for (const need of ['person-days', 'not quotes', 'prototype quality', '30–50%']) {
+      if (!body.includes(need)) fail('post', `manual comparison missing "${need}"`);
+    }
+    if (!/<td>Boss[^<]*<\/td>\s*<td[^>]*>13–20<\/td>/.test(body)) fail('post', 'manual estimate table missing the boss row');
     const minutes = +(html.match(/(\d+) min read/) || [0, 999])[1];
     if (minutes > 25) fail('post', `read time ${minutes} min counts the appendix`);
   },
