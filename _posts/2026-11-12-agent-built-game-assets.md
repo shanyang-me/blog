@@ -16,9 +16,7 @@ bibtex_key: yang2026agentgameassets
 </figure>
 
 <div class="tldr" markdown="1">
-**TL;DR.** I replicated Higgsfield's turntable video → Blender → Unreal Engine pipeline end to end with Claude Code (Fable 5.2), for **about $68** ($63.40 of API-equivalent Claude usage plus $4.55 paid to fal) and **about 4.7 hours** of unattended agent runtime (two of the runs overlapped), all on one Mac mini. The agent produced rigged, animated monsters, a first-person rifle, a sci-fi level kit, a playable three.js shooter and a UE5 arena with a boss fight running at 55–60 fps. By an estimate from typical industry hours, the same content takes a small team **50–80 person-days** by hand, roughly $21k–55k at freelance rates. The output is at prototype quality, not production quality, and closing that gap would still take an estimated 30–50% of the manual art effort.
-
-Integration was the part that worked; art quality was the gap. A video turntable turned out to be a poor spec: the video model drew three or four legs per side on a creature that has five. From-scratch meshes read as programmer art. What worked best was the split a technical artist would recognise: a generative 3D model for the mesh, and the agent for rigging, animation, engine integration and self-checking.
+**TL;DR.** I rebuilt Higgsfield's AI-made shooter with Claude Code: a turntable video of each monster, then models in Blender, then a game in Unreal Engine 5. It ran with no one watching, on one Mac mini, in about 4.7 hours for about $68. Done by hand, the same monsters, rifle, level and boss fight would take a small team an estimated 50–80 person-days. The agent was good at the glue work, like rigging, animation and getting everything into the game, but its models and motion only reach prototype quality. The best results came from letting a 3D generator make the shape and having the agent do everything after that.
 </div>
 
 **Key results at a glance**
