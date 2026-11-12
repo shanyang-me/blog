@@ -74,32 +74,21 @@
     .embed button { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font: 600 16px 'Inter', sans-serif; padding: 12px 22px; border-radius: 8px; border: 0; background: var(--primary-color); color: #fff; cursor: pointer; min-height: 44px; }
     .embed button:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
     .embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-    .pipeline .pipe { display: flex; align-items: stretch; gap: 6px; }
-    .pipeline .stage { flex: 1 1 0; min-width: 0; background: var(--bg-white); border: 1px solid var(--border-color); border-radius: 8px; padding: 10px 10px 8px; font-size: 12.5px; line-height: 1.4; }
-    .pipeline .stage-head { display: flex; flex-direction: column; margin-bottom: 8px; }
-    .pipeline .stage-head b { font-size: 13.5px; }
-    .pipeline .stage-head span { color: var(--text-light); }
-    .pipeline .arrow { align-self: center; color: var(--text-light); font-size: 18px; }
-    .pipeline .metric { display: grid; grid-template-columns: 30px 1fr auto; align-items: center; gap: 6px; margin-top: 4px; }
-    .pipeline .metric .k { color: var(--text-light); }
-    .pipeline .metric .v { font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
-    .pipeline .bar { height: 7px; background: #e5e9f0; border-radius: 4px; overflow: hidden; }
-    .pipeline .bar i { display: block; height: 100%; min-width: 3px; background: var(--primary-color); border-radius: 4px; }
-    .pipeline .bar.cost i { background: #0f766e; }
-    .pipeline .runs { list-style: none; padding: 6px 0 0; margin-top: 10px; border-top: 1px solid var(--border-color); }
-    .post-body .pipeline .runs li { display: grid; grid-template-columns: 1fr auto 14px; gap: 6px; margin-top: 3px; }
-    .pipeline .runs .run { min-width: 0; overflow-wrap: anywhere; }
-    .pipeline .runs .dots { color: #b45309; letter-spacing: -1px; white-space: nowrap; }
-    .pipeline .runs .rn { color: var(--text-light); text-align: right; font-variant-numeric: tabular-nums; }
-    @media (min-width: 641px) {
-      /* Narrow stage cards: put the dots under the run name so long rows (10–11 rounds) never squeeze the name. */
-      .post-body .pipeline .runs li { grid-template-columns: 1fr 14px; gap: 0 6px; margin-top: 6px; }
-      .pipeline .runs .run { grid-column: 1 / -1; }
-    }
-    @media (max-width: 640px) {
-      .pipeline .pipe { flex-direction: column; }
-      .pipeline .arrow { transform: rotate(90deg); }
-    }
+    .scroll-hint { display: none; font-size: 13px; color: var(--text-light); margin-bottom: 6px; }
+    @media (max-width: 760px) { .scroll-hint { display: block; } }
+    .graph-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--border-color); border-radius: 8px; background: var(--bg-white); }
+    .graph { display: block; width: 100%; min-width: 720px; height: auto; font-family: 'Inter', sans-serif; }
+    .graph .pg-col { font-size: 12px; font-weight: 600; fill: var(--text-light); letter-spacing: .04em; text-transform: uppercase; }
+    .graph .pg-edge { fill: none; stroke: #94a3b8; stroke-width: 1.4; }
+    .graph .pg-dash { stroke-dasharray: 4 3; }
+    .graph .pg-head { fill: #94a3b8; }
+    .graph .pg-node rect { fill: #eff4ff; stroke: var(--primary-color); stroke-width: 1.2; }
+    .graph .pg-cmp rect, .graph .pg-legend-cmp { fill: #f1f5f9; stroke: #cbd5e1; stroke-width: 1.2; }
+    .graph .pg-t { font-size: 12.5px; font-weight: 600; fill: var(--text-dark); }
+    .graph .pg-cmp .pg-t { fill: var(--text-light); }
+    .graph .pg-m { font-size: 11px; fill: #334155; font-variant-numeric: tabular-nums; }
+    .graph .pg-r { font-size: 10.5px; fill: var(--text-light); }
+    .graph .pg-dot { fill: #b45309; }
     .cite pre { white-space: pre-wrap; overflow-wrap: anywhere; }
     .post-list { list-style: none; padding: 0; }
     .post-list li { padding: 22px 0; border-bottom: 1px solid var(--border-color); }

@@ -31,37 +31,148 @@ bibtex_key: yang2026agentgameassets
 
 Higgsfield's post <a href="https://higgsfield.ai/@higgsfield.studio/blogs/fable-5-2-built-a-playable-shooter-in-3-5-hours">"Fable 5.2 Built a Playable Sci-Fi Shooter in 3.5 Hours"</a> shows Claude Code turning a 360° turntable video of each enemy into Blender models and rigs, and then into an Unreal Engine 5 shooter through one long, five-part prompt. It is a striking demo, but it leaves out what anyone deciding whether to use this pipeline would need to know. Only the Unreal prompt is the one actually used; the other steps come with starter prompts written for readers. The result is shown as a 25-second clip. There is no record of what it cost, how many attempts each step took, how much a person steered, or whether the assets hold up inside a game. This study fills those gaps: it re-runs the pipeline unattended on one of the article's enemies, compares it with simpler routes to the same asset, and logs time, cost and every self-correction at each stage.
 
-<figure class="pipeline" markdown="0">
-<div class="pipe">
-  <div class="stage">
-    <div class="stage-head"><b>1. Turntable video</b><span>Kling v4 on fal</span></div>
-    <div class="metric"><span class="k">Time</span><span class="bar"><i style="width:3%"></i></span><span class="v">4 min</span></div>
-    <div class="metric"><span class="k">Cost</span><span class="bar cost"><i style="width:6%"></i></span><span class="v">$2.35</span></div>
-    <ul class="runs"><li><span class="run">Scuttler turntable</span><span class="dots" aria-label="0 self-fix rounds">–</span><span class="rn">0</span></li></ul>
-  </div>
-  <div class="arrow" aria-hidden="true">→</div>
-  <div class="stage">
-    <div class="stage-head"><b>2. 3D assets</b><span>Blender + Tripo</span></div>
-    <div class="metric"><span class="k">Time</span><span class="bar"><i style="width:100%"></i></span><span class="v">158.6 min</span></div>
-    <div class="metric"><span class="k">Cost</span><span class="bar cost"><i style="width:100%"></i></span><span class="v">$37.78</span></div>
-    <ul class="runs"><li><span class="run">Scuttler, from video</span><span class="dots" aria-label="4 self-fix rounds">●●●●</span><span class="rn">4</span></li><li><span class="run">Scuttler, text only</span><span class="dots" aria-label="4 self-fix rounds">●●●●</span><span class="rn">4</span></li><li><span class="run">Tripo meshes ×2</span><span class="dots" aria-label="0 self-fix rounds">–</span><span class="rn">0</span></li><li><span class="run">Tripo mesh rig</span><span class="dots" aria-label="4 self-fix rounds">●●●●</span><span class="rn">4</span></li><li><span class="run">Rifle + arms</span><span class="dots" aria-label="4 self-fix rounds">●●●●</span><span class="rn">4</span></li><li><span class="run">Level kit</span><span class="dots" aria-label="3 self-fix rounds">●●●</span><span class="rn">3</span></li><li><span class="run">Boss</span><span class="dots" aria-label="4 self-fix rounds">●●●●</span><span class="rn">4</span></li></ul>
-  </div>
-  <div class="arrow" aria-hidden="true">→</div>
-  <div class="stage">
-    <div class="stage-head"><b>3. three.js game</b><span>browser FPS</span></div>
-    <div class="metric"><span class="k">Time</span><span class="bar"><i style="width:11%"></i></span><span class="v">17.6 min</span></div>
-    <div class="metric"><span class="k">Cost</span><span class="bar cost"><i style="width:12%"></i></span><span class="v">$4.63</span></div>
-    <ul class="runs"><li><span class="run">Game build</span><span class="dots" aria-label="4 self-fix rounds">●●●●</span><span class="rn">4</span></li></ul>
-  </div>
-  <div class="arrow" aria-hidden="true">→</div>
-  <div class="stage">
-    <div class="stage-head"><b>4. Unreal game</b><span>UE 5.8, headless</span></div>
-    <div class="metric"><span class="k">Time</span><span class="bar"><i style="width:69%"></i></span><span class="v">110 min</span></div>
-    <div class="metric"><span class="k">Cost</span><span class="bar cost"><i style="width:61%"></i></span><span class="v">$23.19</span></div>
-    <ul class="runs"><li><span class="run">Greybox arena</span><span class="dots" aria-label="10 self-fix rounds">●●●●●●●●●●</span><span class="rn">10</span></li><li><span class="run">Art pass</span><span class="dots" aria-label="11 self-fix rounds">●●●●●●●●●●●</span><span class="rn">11</span></li></ul>
-  </div>
+
+## Coding Agent for Game Pipeline
+
+Each box below is one unattended agent run, with its time, cost and the number of rounds in which it checked its own output and fixed a problem. Arrows show whose output fed whom: the turntable guides the Blender monster and seeds the Tripo mesh, the agent rigs that mesh, and the monsters, rifle, level kit and boss flow into the two games.
+
+<figure class="pipeline-graph" markdown="0">
+<p class="scroll-hint">Scroll sideways to see the whole graph →</p>
+<div class="graph-scroll">
+<svg class="graph" viewBox="0 0 800 528" role="img" aria-labelledby="pg-title pg-desc">
+<title id="pg-title">Coding-agent game pipeline</title>
+<desc id="pg-desc">Each box is one unattended agent run with its time, cost and number of self-fix rounds. Arrows show which run's output fed which. Grey boxes were built only for comparison.</desc>
+<defs><marker id="pg-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" class="pg-head"/></marker></defs>
+<text x="20" y="16" class="pg-col">Reference</text>
+<text x="220" y="16" class="pg-col">3D assets</text>
+<text x="420" y="16" class="pg-col">Rigging</text>
+<text x="620" y="16" class="pg-col">Games</text>
+<path d="M190,195.0 C205.0,195.0 205.0,129.0 218,129.0" class="pg-edge" marker-end="url(#pg-arrow)"/>
+<path d="M190,195.0 C205.0,195.0 205.0,261.0 218,261.0" class="pg-edge" marker-end="url(#pg-arrow)"/>
+<path d="M390,261.0 C405.0,261.0 405.0,261.0 418,261.0" class="pg-edge" marker-end="url(#pg-arrow)"/>
+<path d="M390,129.0 C505.0,129.0 505.0,129.0 618,129.0" class="pg-edge" marker-end="url(#pg-arrow)"/>
+<path d="M390,195.0 C505.0,195.0 505.0,129.0 618,129.0" class="pg-edge" marker-end="url(#pg-arrow)"/>
+<path d="M590,261.0 C605.0,261.0 605.0,129.0 618,129.0" class="pg-edge pg-dash" marker-end="url(#pg-arrow)"/>
+<path d="M390,129.0 C505.0,129.0 505.0,261.0 618,261.0" class="pg-edge" marker-end="url(#pg-arrow)"/>
+<path d="M590,261.0 C605.0,261.0 605.0,261.0 618,261.0" class="pg-edge" marker-end="url(#pg-arrow)"/>
+<path d="M390,195.0 C505.0,195.0 505.0,261.0 618,261.0" class="pg-edge" marker-end="url(#pg-arrow)"/>
+<path d="M705.0,290 L705.0,395" class="pg-edge" marker-end="url(#pg-arrow)"/>
+<path d="M390,393.0 C505.0,393.0 505.0,426.0 618,426.0" class="pg-edge" marker-end="url(#pg-arrow)"/>
+<path d="M390,459.0 C505.0,459.0 505.0,426.0 618,426.0" class="pg-edge" marker-end="url(#pg-arrow)"/>
+<g class="pg-node pg-main"><rect x="20" y="166" width="170" height="58" rx="8"/>
+<text x="30" y="184" class="pg-t">Turntable video</text>
+<text x="30" y="200" class="pg-m">Kling v4 · 4 min · $2.35</text>
+<text x="30" y="216" class="pg-r">no self-fix rounds</text>
+</g>
+<g class="pg-node pg-cmp"><rect x="220" y="34" width="170" height="58" rx="8"/>
+<text x="230" y="52" class="pg-t">Monster, text only</text>
+<text x="230" y="68" class="pg-m">Blender · 8.7 min · $3.47</text>
+<circle cx="234" cy="80" r="3.2" class="pg-dot"/>
+<circle cx="243" cy="80" r="3.2" class="pg-dot"/>
+<circle cx="252" cy="80" r="3.2" class="pg-dot"/>
+<circle cx="261" cy="80" r="3.2" class="pg-dot"/>
+<text x="272" y="84" class="pg-r">4</text>
+</g>
+<g class="pg-node pg-main"><rect x="220" y="100" width="170" height="58" rx="8"/>
+<text x="230" y="118" class="pg-t">Monster, from video</text>
+<text x="230" y="134" class="pg-m">Blender · 13.1 min · $5.15</text>
+<circle cx="234" cy="146" r="3.2" class="pg-dot"/>
+<circle cx="243" cy="146" r="3.2" class="pg-dot"/>
+<circle cx="252" cy="146" r="3.2" class="pg-dot"/>
+<circle cx="261" cy="146" r="3.2" class="pg-dot"/>
+<text x="272" y="150" class="pg-r">4</text>
+</g>
+<g class="pg-node pg-main"><rect x="220" y="166" width="170" height="58" rx="8"/>
+<text x="230" y="184" class="pg-t">Rifle + arms</text>
+<text x="230" y="200" class="pg-m">Blender · 35.8 min · $8.42</text>
+<circle cx="234" cy="212" r="3.2" class="pg-dot"/>
+<circle cx="243" cy="212" r="3.2" class="pg-dot"/>
+<circle cx="252" cy="212" r="3.2" class="pg-dot"/>
+<circle cx="261" cy="212" r="3.2" class="pg-dot"/>
+<text x="272" y="216" class="pg-r">4</text>
+</g>
+<g class="pg-node pg-main"><rect x="220" y="232" width="170" height="58" rx="8"/>
+<text x="230" y="250" class="pg-t">Monster, video frame</text>
+<text x="230" y="266" class="pg-m">Tripo · 1.6 min · $1.10</text>
+<text x="230" y="282" class="pg-r">no self-fix rounds</text>
+</g>
+<g class="pg-node pg-cmp"><rect x="220" y="298" width="170" height="58" rx="8"/>
+<text x="230" y="316" class="pg-t">Monster, text</text>
+<text x="230" y="332" class="pg-m">Tripo · 1.7 min · $1.10</text>
+<text x="230" y="348" class="pg-r">no self-fix rounds</text>
+</g>
+<g class="pg-node pg-main"><rect x="220" y="364" width="170" height="58" rx="8"/>
+<text x="230" y="382" class="pg-t">Level kit</text>
+<text x="230" y="398" class="pg-m">Blender · 56 min · $6.48</text>
+<circle cx="234" cy="410" r="3.2" class="pg-dot"/>
+<circle cx="243" cy="410" r="3.2" class="pg-dot"/>
+<circle cx="252" cy="410" r="3.2" class="pg-dot"/>
+<text x="263" y="414" class="pg-r">3</text>
+</g>
+<g class="pg-node pg-main"><rect x="220" y="430" width="170" height="58" rx="8"/>
+<text x="230" y="448" class="pg-t">Boss</text>
+<text x="230" y="464" class="pg-m">Blender · 31 min · $7.30</text>
+<circle cx="234" cy="476" r="3.2" class="pg-dot"/>
+<circle cx="243" cy="476" r="3.2" class="pg-dot"/>
+<circle cx="252" cy="476" r="3.2" class="pg-dot"/>
+<circle cx="261" cy="476" r="3.2" class="pg-dot"/>
+<text x="272" y="480" class="pg-r">4</text>
+</g>
+<g class="pg-node pg-main"><rect x="420" y="232" width="170" height="58" rx="8"/>
+<text x="430" y="250" class="pg-t">Rig + animate mesh</text>
+<text x="430" y="266" class="pg-m">Blender · 10.7 min · $4.76</text>
+<circle cx="434" cy="278" r="3.2" class="pg-dot"/>
+<circle cx="443" cy="278" r="3.2" class="pg-dot"/>
+<circle cx="452" cy="278" r="3.2" class="pg-dot"/>
+<circle cx="461" cy="278" r="3.2" class="pg-dot"/>
+<text x="472" y="282" class="pg-r">4</text>
+</g>
+<g class="pg-node pg-main"><rect x="620" y="100" width="170" height="58" rx="8"/>
+<text x="630" y="118" class="pg-t">three.js shooter</text>
+<text x="630" y="134" class="pg-m">browser · 17.6 min · $4.63</text>
+<circle cx="634" cy="146" r="3.2" class="pg-dot"/>
+<circle cx="643" cy="146" r="3.2" class="pg-dot"/>
+<circle cx="652" cy="146" r="3.2" class="pg-dot"/>
+<circle cx="661" cy="146" r="3.2" class="pg-dot"/>
+<text x="672" y="150" class="pg-r">4</text>
+</g>
+<g class="pg-node pg-main"><rect x="620" y="232" width="170" height="58" rx="8"/>
+<text x="630" y="250" class="pg-t">UE5 greybox arena</text>
+<text x="630" y="266" class="pg-m">Unreal 5.8 · 33 min · $9.07</text>
+<circle cx="634" cy="278" r="3.2" class="pg-dot"/>
+<circle cx="643" cy="278" r="3.2" class="pg-dot"/>
+<circle cx="652" cy="278" r="3.2" class="pg-dot"/>
+<circle cx="661" cy="278" r="3.2" class="pg-dot"/>
+<circle cx="670" cy="278" r="3.2" class="pg-dot"/>
+<circle cx="679" cy="278" r="3.2" class="pg-dot"/>
+<circle cx="688" cy="278" r="3.2" class="pg-dot"/>
+<circle cx="697" cy="278" r="3.2" class="pg-dot"/>
+<circle cx="706" cy="278" r="3.2" class="pg-dot"/>
+<circle cx="715" cy="278" r="3.2" class="pg-dot"/>
+<text x="726" y="282" class="pg-r">10</text>
+</g>
+<g class="pg-node pg-main"><rect x="620" y="397" width="170" height="58" rx="8"/>
+<text x="630" y="415" class="pg-t">UE5 art pass + boss</text>
+<text x="630" y="431" class="pg-m">Unreal 5.8 · 77 min · $14.12</text>
+<circle cx="634" cy="443" r="3.2" class="pg-dot"/>
+<circle cx="643" cy="443" r="3.2" class="pg-dot"/>
+<circle cx="652" cy="443" r="3.2" class="pg-dot"/>
+<circle cx="661" cy="443" r="3.2" class="pg-dot"/>
+<circle cx="670" cy="443" r="3.2" class="pg-dot"/>
+<circle cx="679" cy="443" r="3.2" class="pg-dot"/>
+<circle cx="688" cy="443" r="3.2" class="pg-dot"/>
+<circle cx="697" cy="443" r="3.2" class="pg-dot"/>
+<circle cx="706" cy="443" r="3.2" class="pg-dot"/>
+<circle cx="715" cy="443" r="3.2" class="pg-dot"/>
+<circle cx="724" cy="443" r="3.2" class="pg-dot"/>
+<text x="735" y="447" class="pg-r">11</text>
+</g>
+<circle cx="26" cy="510" r="3.2" class="pg-dot"/><text x="34" y="514" class="pg-r">= one self-fix round</text>
+<rect x="170" y="503" width="16" height="11" rx="3" class="pg-legend-cmp"/><text x="192" y="514" class="pg-r">comparison only</text>
+<path d="M300,510 L330,510" class="pg-edge pg-dash"/><text x="336" y="514" class="pg-r">monster switch added later by the supervising session</text>
+</svg>
 </div>
-<figcaption>The pipeline as re-run here. Bars compare time and cost across stages (longest stage = full bar). Dots are self-fix rounds: each round the run rendered or played its own output, found a problem and fixed it, with no person involved. Totals: 290 minutes and $67.95. Stage 2 includes the rifle run's game integration; the level kit and boss ran in parallel.</figcaption>
+<figcaption>Totals: 290 minutes and $67.95, all on one Mac mini. The level kit and boss ran in parallel. The rifle run also wired the rifle into the three.js game.</figcaption>
 </figure>
 
 ## Setup
