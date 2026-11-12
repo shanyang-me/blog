@@ -29,7 +29,7 @@ bibtex_key: yang2026agentgameassets
 
 ## What Higgsfield showed, and what it leaves out
 
-Higgsfield's post <a href="https://higgsfield.ai/@higgsfield.studio/blogs/fable-5-2-built-a-playable-shooter-in-3-5-hours">"Fable 5.2 Built a Playable Sci-Fi Shooter in 3.5 Hours"</a> shows Claude Code turning a 360° turntable video of each enemy into Blender models and rigs, and then into an Unreal Engine 5 shooter through one long, five-part prompt. It is a striking demo, but it leaves out what anyone deciding whether to use this pipeline would need to know. Only the Unreal prompt is the one actually used; the other steps come with starter prompts written for readers. The result is shown as a 25-second clip. There is no record of what it cost, how many attempts each step took, how much a person steered, or whether the assets hold up inside a game. This study fills those gaps: it re-runs the pipeline unattended on one of the article's enemies, compares it with simpler routes to the same asset, and logs time, cost and every self-correction at each stage.
+Higgsfield's post <a href="https://higgsfield.ai/@higgsfield.studio/blogs/fable-5-2-built-a-playable-shooter-in-3-5-hours">"Fable 5.2 Built a Playable Sci-Fi Shooter in 3.5 Hours"</a> shows Claude Code turning videos of each monster into 3D models and then into an Unreal Engine 5 game. It's an impressive demo, but it only shares one of the real prompts and a 25-second clip. It doesn't say what it cost, how many tries each step took, how much a person helped, or whether the models work in a real game. This post answers those questions by running the same pipeline again with no one helping and recording the time, cost and every fix along the way.
 
 
 ## Coding Agent for Game Pipeline
