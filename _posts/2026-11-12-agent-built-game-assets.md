@@ -16,7 +16,7 @@ bibtex_key: yang2026agentgameassets
 </figure>
 
 <div class="tldr" markdown="1">
-**TL;DR.** I rebuilt Higgsfield's AI-made shooter with Claude Code: a turntable video of each monster, then models in Blender, then a game in Unreal Engine 5. It ran with no one watching, on one Mac mini, in about 4.7 hours for about $68. Done by hand, the same monsters, rifle, level and boss fight would take a small team an estimated 50–80 person-days. The agent was good at the glue work, like rigging, animation and getting everything into the game, but its models and motion only reach prototype quality. The best results came from letting a 3D generator make the shape and having the agent do everything after that.
+**TL;DR.** I rebuilt Higgsfield's AI-made shooter with Claude Code: a turntable video of each monster, then models in Blender, then a game in Unreal Engine 5. It ran on one Mac mini with no one watching. The agent took about 4.7 hours and $68; doing the same work by hand would take an estimated 50–80 days of one person's time and roughly $21,000–55,000. The agent was good at the glue work, like rigging, animation and getting everything into the game, but its models and motion only reach prototype quality. The best results came from letting a 3D generator make the shape and having the agent do everything after that.
 </div>
 
 **Key results at a glance**
