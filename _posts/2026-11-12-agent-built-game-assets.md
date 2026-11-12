@@ -29,20 +29,40 @@ bibtex_key: yang2026agentgameassets
 
 ## What Higgsfield showed, and what it leaves out
 
-Higgsfield published a post titled:
+Higgsfield's post <a href="https://higgsfield.ai/@higgsfield.studio/blogs/fable-5-2-built-a-playable-shooter-in-3-5-hours">"Fable 5.2 Built a Playable Sci-Fi Shooter in 3.5 Hours"</a> shows Claude Code turning a 360° turntable video of each enemy into Blender models and rigs, and then into an Unreal Engine 5 shooter through one long, five-part prompt. It is a striking demo, but it leaves out what anyone deciding whether to use this pipeline would need to know. Only the Unreal prompt is the one actually used; the other steps come with starter prompts written for readers. The result is shown as a 25-second clip. There is no record of what it cost, how many attempts each step took, how much a person steered, or whether the assets hold up inside a game. This study fills those gaps: it re-runs the pipeline unattended on one of the article's enemies, compares it with simpler routes to the same asset, and logs time, cost and every self-correction at each stage.
 
-> Fable 5.2 Built a Playable Sci-Fi Shooter in 3.5 Hours
-
-The <a href="https://higgsfield.ai/@higgsfield.studio/blogs/fable-5-2-built-a-playable-shooter-in-3-5-hours">article</a> runs Claude Code with Fable 5.2 in one project folder and describes four steps:
-
-1. Generate a 360° turntable video of each enemy with the Higgsfield MCP (12 s, 21:9), so the model can see every side before it builds anything.
-2. Have Claude drive Blender from the video: model and rig the rifle with first-person arms, the enemies, a boss, the level and effects.
-3. One long, five-part prompt that builds the shooter in Unreal Engine 5, gameplay first with placeholder shapes, real art second.
-4. One rework pass: the first rifle had no optic and sat wrong in the hands, so it was rebuilt and swapped in.
-
-The result is impressive, and it is also hard to evaluate. The article says that only the step 3 prompt is the one they actually used; the prompts for steps 1, 2 and 4 are starter versions written for readers. The finished game appears as a 25-second screen recording. So the parts I cared most about stay invisible: how many attempts the turntable and Blender steps took, how much a person steered, what it cost, and whether the assets hold up outside a curated clip.
-
-That is a measurement question, so I set it up as one: re-run the pipeline on one of the article's enemies, compare it against simpler routes to the same asset, put every asset into two real games, and record time, cost and every self-correction along the way.
+<figure class="pipeline" markdown="0">
+<div class="pipe">
+  <div class="stage">
+    <div class="stage-head"><b>1. Turntable video</b><span>Kling v4 on fal</span></div>
+    <div class="metric"><span class="k">Time</span><span class="bar"><i style="width:3%"></i></span><span class="v">4 min</span></div>
+    <div class="metric"><span class="k">Cost</span><span class="bar cost"><i style="width:6%"></i></span><span class="v">$2.35</span></div>
+    <ul class="runs"><li><span class="run">Scuttler turntable</span><span class="dots" aria-label="0 self-fix rounds">–</span><span class="rn">0</span></li></ul>
+  </div>
+  <div class="arrow" aria-hidden="true">→</div>
+  <div class="stage">
+    <div class="stage-head"><b>2. 3D assets</b><span>Blender + Tripo</span></div>
+    <div class="metric"><span class="k">Time</span><span class="bar"><i style="width:100%"></i></span><span class="v">158.6 min</span></div>
+    <div class="metric"><span class="k">Cost</span><span class="bar cost"><i style="width:100%"></i></span><span class="v">$37.78</span></div>
+    <ul class="runs"><li><span class="run">Scuttler, from video</span><span class="dots" aria-label="4 self-fix rounds">●●●●</span><span class="rn">4</span></li><li><span class="run">Scuttler, text only</span><span class="dots" aria-label="4 self-fix rounds">●●●●</span><span class="rn">4</span></li><li><span class="run">Tripo meshes ×2</span><span class="dots" aria-label="0 self-fix rounds">–</span><span class="rn">0</span></li><li><span class="run">Tripo mesh rig</span><span class="dots" aria-label="4 self-fix rounds">●●●●</span><span class="rn">4</span></li><li><span class="run">Rifle + arms</span><span class="dots" aria-label="4 self-fix rounds">●●●●</span><span class="rn">4</span></li><li><span class="run">Level kit</span><span class="dots" aria-label="3 self-fix rounds">●●●</span><span class="rn">3</span></li><li><span class="run">Boss</span><span class="dots" aria-label="4 self-fix rounds">●●●●</span><span class="rn">4</span></li></ul>
+  </div>
+  <div class="arrow" aria-hidden="true">→</div>
+  <div class="stage">
+    <div class="stage-head"><b>3. three.js game</b><span>browser FPS</span></div>
+    <div class="metric"><span class="k">Time</span><span class="bar"><i style="width:11%"></i></span><span class="v">17.6 min</span></div>
+    <div class="metric"><span class="k">Cost</span><span class="bar cost"><i style="width:12%"></i></span><span class="v">$4.63</span></div>
+    <ul class="runs"><li><span class="run">Game build</span><span class="dots" aria-label="4 self-fix rounds">●●●●</span><span class="rn">4</span></li></ul>
+  </div>
+  <div class="arrow" aria-hidden="true">→</div>
+  <div class="stage">
+    <div class="stage-head"><b>4. Unreal game</b><span>UE 5.8, headless</span></div>
+    <div class="metric"><span class="k">Time</span><span class="bar"><i style="width:69%"></i></span><span class="v">110 min</span></div>
+    <div class="metric"><span class="k">Cost</span><span class="bar cost"><i style="width:61%"></i></span><span class="v">$23.19</span></div>
+    <ul class="runs"><li><span class="run">Greybox arena</span><span class="dots" aria-label="10 self-fix rounds">●●●●●●●●●●</span><span class="rn">10</span></li><li><span class="run">Art pass</span><span class="dots" aria-label="11 self-fix rounds">●●●●●●●●●●●</span><span class="rn">11</span></li></ul>
+  </div>
+</div>
+<figcaption>The pipeline as re-run here. Bars compare time and cost across stages (longest stage = full bar). Dots are self-fix rounds: each round the run rendered or played its own output, found a problem and fixed it, with no person involved. Totals: 290 minutes and $67.95. Stage 2 includes the rifle run's game integration; the level kit and boss ran in parallel.</figcaption>
+</figure>
 
 ## Setup
 

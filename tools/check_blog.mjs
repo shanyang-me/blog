@@ -126,7 +126,8 @@ const groups = {
     if (!body.includes('This post was drafted by Claude and reviewed and edited by me')) fail('post', 'missing drafting disclosure');
     if (!/href="https:\/\/higgsfield\.ai\/[^"]+"/.test(body)) fail('post', 'missing link to the Higgsfield article');
     const quotes = (body.match(/<blockquote/g) || []).length;
-    if (quotes !== 1) fail('post', `${quotes} blockquotes, want exactly 1`);
+    if (quotes > 1) fail('post', `${quotes} blockquotes, want at most 1`);
+    if (!body.includes('class="pipeline"')) fail('post', 'missing pipeline diagram');
     for (const n of ['$3.47', '$5.15', '$4.63', '$8.42', '$4.76', '$9.07', '$6.48', '$7.30', '$14.12', '$63.40',
       '$4.55', '$2.35', '0.009', '57.9']) {
       if (!body.includes(n)) fail('post', `number ${n} missing`);
