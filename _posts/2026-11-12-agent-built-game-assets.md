@@ -16,7 +16,7 @@ bibtex_key: yang2026agentgameassets
 </figure>
 
 <div class="tldr" markdown="1">
-**TL;DR.** I rebuilt Higgsfield's AI-made shooter with Claude Code: a turntable video of each monster, then models in Blender, then a game in Unreal Engine 5. It ran on one Mac mini with no one watching. The agent took about 4.7 hours and $68; doing the same work by hand would take an estimated 50–80 days of one person's time and roughly $21,000–55,000. Every step, from the first video to a playable boss fight, ran from prompts alone, so the whole pipeline already works end to end. If that holds, one person with one machine can go from a game idea to something playable in hours instead of weeks.
+**TL;DR.** Rebuilt Higgsfield's AI-made shooter (monsters, a rifle, a level and a UE5 boss fight) using Claude Code on one Mac mini, unattended. Cost: about 4.7 hours and $68. By hand: an estimated 50–80 person-days and $21,000–55,000. Potential gap: the result has not yet been compared against hand-made art or tested with players. But promising: every step ran from prompts alone, so going from a game idea to something playable can take hours instead of weeks.
 </div>
 
 **Key results at a glance**
