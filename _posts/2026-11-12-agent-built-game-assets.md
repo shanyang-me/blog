@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Rebuilding an AI Shooter: 4.7 Agent-Hours vs. 50–80 Person-Days"
-subtitle: "Monsters, a rifle, a level and a UE5 boss fight for about $68, built unattended by a coding agent at prototype quality. The person-days are an estimate; the quality gap is real."
+subtitle: "Monsters, a rifle, a level and a UE5 boss fight for about $68, built unattended by a coding agent at prototype quality."
 date: 2026-11-12
 description: "I replicated a published turntable → Blender → Unreal game pipeline with Claude Code, end to end and unattended: about $68 and 4.7 agent-hours for work estimated at 50–80 person-days by hand, at prototype quality. Integration is solved; art quality is the gap."
 image: /assets/agent-built-game-assets/og.jpg
