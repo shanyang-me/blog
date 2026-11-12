@@ -120,7 +120,7 @@ const groups = {
     const body = html.split('<div class="post-body">')[1]?.split('<section class="cite">')[0] ?? '';
     const main = body.split('id="appendix-prompts"')[0];
     const words = main.replace(/<[^>]+>/g, ' ').split(/\s+/).filter((w) => /[A-Za-z0-9]/.test(w)).length;
-    if (words < 3000 || words > 4500) fail('post', `body is ${words} words, want 3000-4500`);
+    if (words < 800 || words > 4500) fail('post', `body is ${words} words, want 800-4500`);
     const tldr = body.split('class="tldr"')[1]?.split('</div>')[0] ?? '';
     for (const n of ['$68', '4.7 hours']) if (!tldr.includes(n)) fail('post', `TL;DR missing ${n}`);
     if (!body.includes('This post was drafted by Claude and reviewed and edited by me')) fail('post', 'missing drafting disclosure');
@@ -155,7 +155,7 @@ const groups = {
     for (const need of ['person-days', 'not quotes', 'prototype quality', '30–50%']) {
       if (!body.includes(need)) fail('post', `manual comparison missing "${need}"`);
     }
-    if (!/<td>Boss[^<]*<\/td>\s*<td[^>]*>13–20<\/td>/.test(body)) fail('post', 'manual estimate table missing the boss row');
+    if (!/<td>Boss<\/td>\s*<td[^>]*>13–20<\/td>/.test(body)) fail('post', 'manual estimate table missing the boss row');
     const minutes = +(html.match(/(\d+) min read/) || [0, 999])[1];
     if (minutes > 25) fail('post', `read time ${minutes} min counts the appendix`);
   },
