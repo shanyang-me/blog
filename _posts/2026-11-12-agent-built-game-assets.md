@@ -2,7 +2,7 @@
 layout: post
 title: "Rebuilding an AI Shooter: 4.7 Agent-Hours vs. 50–80 Person-Days"
 date: 2026-11-12
-description: "I replicated a published turntable → Blender → Unreal game pipeline with Claude Code, end to end and unattended: about $68 and 4.7 agent-hours for work estimated at 50–80 person-days by hand, at prototype quality. Integration is solved; art quality is the gap."
+description: "I replicated a published turntable → Blender → Unreal game pipeline with Claude Code, end to end and unattended: about $68 and 4.7 agent-hours for work estimated at 50–80 person-days by hand. Every step ran from prompts, with no one helping."
 image: /assets/agent-built-game-assets/og.jpg
 permalink: /agent-built-game-assets/
 bibtex_key: yang2026agentgameassets
@@ -288,7 +288,7 @@ The supervising session installed Unreal, solved four macOS setup issues once, a
 
 </div>
 
-Agent cost is $63.40 of Claude at API-equivalent prices plus $4.55 billed by fal; it leaves out installing Unreal, the supervising session and my time. By-hand figures are estimates from typical industry hours for mid-level indie work, not quotes, and come to roughly $21,000–55,000 at freelance rates. The agent's output is at prototype quality; reaching a shippable bar would take an estimated 30–50% of the manual art effort.
+Agent cost is $63.40 of Claude at API-equivalent prices plus $4.55 billed by fal; it leaves out installing Unreal, the supervising session and my time. By-hand figures are estimates from typical industry hours for mid-level indie work, not quotes, and come to roughly $21,000–55,000 at freelance rates.
 
 ## Limitations and next steps
 

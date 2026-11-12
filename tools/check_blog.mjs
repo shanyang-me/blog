@@ -142,7 +142,7 @@ const groups = {
     // Claims the final review found unsupported by the experiment records.
     for (const bad of ['faithfully reproduced','inherited from the video frame', 'cheaper than modeling from scratch',
       'are mine', 'only tiled normal maps', 'when played in three.js', 'my judgment', 'what we could not see',
-      'about $6 and 12 minutes']) {
+      'about $6 and 12 minutes', 'prototype quality', '30–50%', 'shippable']) {
       if (body.toLowerCase().includes(bad.toLowerCase())) fail('post', `unsupported or misattributed claim: "${bad}"`);
     }
     for (const need of ['measured by the supervising session', 'supervising session installed',
@@ -152,7 +152,7 @@ const groups = {
     // Manual-production comparison is the headline; it must carry its method and the quality caveat.
     const title = (html.match(/<h1>([^<]+)<\/h1>/) || [])[1] || '';
     if (!title.includes('Person-Days')) fail('post', `title lacks the manual comparison: "${title}"`);
-    for (const need of ['person-days', 'not quotes', 'prototype quality', '30–50%']) {
+    for (const need of ['person-days', 'not quotes']) {
       if (!body.includes(need)) fail('post', `manual comparison missing "${need}"`);
     }
     if (!/<td>Boss<\/td>(\s*<td[^>]*>[^<]*<\/td>){2}\s*<td[^>]*>13–20<\/td>/.test(body)) fail('post', 'manual estimate table missing the boss row');
