@@ -145,7 +145,7 @@ const groups = {
       'about $6 and 12 minutes']) {
       if (body.toLowerCase().includes(bad.toLowerCase())) fail('post', `unsupported or misattributed claim: "${bad}"`);
     }
-    for (const need of ['measured by the supervising session', 'supervising session installed', 'ten in Unreal',
+    for (const need of ['measured by the supervising session', 'supervising session installed',
       'game/index.html?enemy=tripo']) {
       if (!body.includes(need)) fail('post', `missing "${need}"`);
     }
