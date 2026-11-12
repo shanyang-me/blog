@@ -176,7 +176,7 @@ The pipeline runs from a turntable video through 3D assets and rigging to two pl
 
 ## Setup
 
-I designed the experiment and made the decisions. A supervising Claude Code session wrote the prompts and launched the runs. Every asset and game came from headless `claude -p` runs on Fable 5.2, fully unattended once launched, all on one Mac mini (Apple M5, 16 GB). Each run builds, renders, checks its own pictures and fixes what is wrong, round after round. Claude costs are API-equivalent prices; fal costs are what fal billed. Prompts are in the appendix.
+I chose what to build, which routes to compare and when to stop. A separate Claude Code session, which I call the supervising session, turned those choices into prompts and launched the runs. Every asset and game came from headless `claude -p` runs on Fable 5.2, fully unattended once launched, all on one Mac mini (Apple M5, 16 GB). Each run builds, renders, checks its own pictures and fixes what is wrong, round after round. Claude costs are API-equivalent prices; fal costs are what fal billed. Prompts are in the appendix.
 
 ## 1. Reference: the turntable video
 
