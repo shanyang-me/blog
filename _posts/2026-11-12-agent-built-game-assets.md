@@ -222,10 +222,8 @@ Same monster, same prompt, four routes. Only the Blender routes produce a skelet
 
 The rifle with arms was the most expensive asset (35.8 min, $8.42); the run also wired it into the three.js game. The level kit (56 min, $6.48) and boss (31 min, $7.30, 59 bones, joints rigidly attached) ran in parallel for the Unreal art pass.
 
-<div class="grid">
-  <figure><img src="{{ a }}/img/rifle-reload.jpg" alt="Reload in game: left hand pulling the magazine" loading="lazy"><figcaption>Rifle reload in game.</figcaption></figure>
-  <figure><img src="{{ a }}/img/ue-kit.jpg" alt="The Blender level kit pieces" loading="lazy"><figcaption>Level kit in Blender.</figcaption></figure>
-</div>
+<figure><img src="{{ a }}/img/rifle-reload.jpg" alt="Reload in game: left hand pulling the magazine" loading="lazy"><figcaption>Rifle reload in the game.</figcaption></figure>
+<figure><img src="{{ a }}/img/ue-kit.jpg" alt="The Blender level kit pieces" loading="lazy"><figcaption>The 12-piece level kit in Blender.</figcaption></figure>
 
 ## 3. Rigging: a generated mesh
 
@@ -265,11 +263,9 @@ The agent built a browser shooter around its monster and play-tested it with a b
 
 The supervising session installed Unreal and wrote a wrapper so a run could build and play without opening a window. The greybox run (33 min, $9.07, 10 rounds) imported all three models intact and hit 57.9 fps with 0 errors. The art pass (77 min, $14.12, 11 rounds) added the kit, the boss, effects and the video at the top, at 55–60 fps with Lumen off.<sup>1</sup> The supervising session re-ran both and got matching results.
 
-<div class="grid">
-  <figure><img src="{{ a }}/img/ue-play-55.jpg" alt="Unreal greybox bot run at 55 seconds" loading="lazy"><figcaption>Greybox.</figcaption></figure>
-  <figure><img src="{{ a }}/img/ue-boss-roar.jpg" alt="The boss roaring on entry" loading="lazy"><figcaption>Art pass: boss entrance.</figcaption></figure>
-  <figure><img src="{{ a }}/img/ue-weak-point.jpg" alt="Hitting a glowing weak point on the boss's back" loading="lazy"><figcaption>Weak-point hit.</figcaption></figure>
-</div>
+<figure><img src="{{ a }}/img/ue-play-55.jpg" alt="Unreal greybox bot run at 55 seconds" loading="lazy"><figcaption>Greybox build, bot run at 55 s.</figcaption></figure>
+<figure><img src="{{ a }}/img/ue-boss-roar.jpg" alt="The boss roaring on entry" loading="lazy"><figcaption>Art pass: the boss enters.</figcaption></figure>
+<figure><img src="{{ a }}/img/ue-weak-point.jpg" alt="Hitting a glowing weak point on the boss's back" loading="lazy"><figcaption>Art pass: hitting a weak point on her back.</figcaption></figure>
 
 ## What the runs had to fix
 

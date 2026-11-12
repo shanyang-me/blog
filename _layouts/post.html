@@ -29,6 +29,15 @@
     </article>
   </main>
   <script>
+    // Click any figure image to open it at full size.
+    document.querySelectorAll('.post-body figure img').forEach(function (img) {
+      if (img.closest('a') || img.closest('.embed')) return;
+      var link = document.createElement('a');
+      link.href = img.src; link.target = '_blank'; link.rel = 'noopener';
+      link.title = 'Open full size';
+      img.parentNode.insertBefore(link, img); link.appendChild(img);
+      img.style.cursor = 'zoom-in';
+    });
     // Embeds load only on click: the game is ~10 MB and should not cost readers who never press Play.
     document.querySelectorAll('.embed[data-src]').forEach(function (box) {
       var btn = box.querySelector('button');
