@@ -10,8 +10,13 @@ bibtex_key: yang2026agentgameassets
 ---
 {% assign a = '/assets/agent-built-game-assets' | relative_url %}
 
+<figure>
+  <video src="{{ a }}/video/ue-gameplay.mp4" poster="{{ a }}/img/ue-video-poster.jpg" controls muted playsinline preload="metadata"></video>
+  <figcaption>The end result: a UE5 arena with a boss fight, built from a turntable video by unattended coding-agent runs. 36 s of the game's own autoplay bot, wave 3 through the boss kill.</figcaption>
+</figure>
+
 <div class="tldr" markdown="1">
-**TL;DR.** I replicated Higgsfield's turntable video → Blender → Unreal Engine pipeline end to end with Claude Code (Fable 5.2), for **about $68** ($63.40 of API-equivalent Claude usage plus $4.55 paid to fal) and **about 4.7 hours** of unattended agent runtime (two of the runs overlapped). The agent produced rigged, animated monsters, a first-person rifle, a sci-fi level kit, a playable three.js shooter and a UE5 arena with a boss fight running at 55–60 fps. By an estimate from typical industry hours, the same content takes a small team **50–80 person-days** by hand, roughly $21k–55k at freelance rates. The output is at prototype quality, not production quality, and closing that gap would still take an estimated 30–50% of the manual art effort.
+**TL;DR.** I replicated Higgsfield's turntable video → Blender → Unreal Engine pipeline end to end with Claude Code (Fable 5.2), for **about $68** ($63.40 of API-equivalent Claude usage plus $4.55 paid to fal) and **about 4.7 hours** of unattended agent runtime (two of the runs overlapped), all on one Mac mini. The agent produced rigged, animated monsters, a first-person rifle, a sci-fi level kit, a playable three.js shooter and a UE5 arena with a boss fight running at 55–60 fps. By an estimate from typical industry hours, the same content takes a small team **50–80 person-days** by hand, roughly $21k–55k at freelance rates. The output is at prototype quality, not production quality, and closing that gap would still take an estimated 30–50% of the manual art effort.
 
 Integration was the part that worked; art quality was the gap. A video turntable turned out to be a poor spec: the video model drew three or four legs per side on a creature that has five. From-scratch meshes read as programmer art. What worked best was the split a technical artist would recognise: a generative 3D model for the mesh, and the agent for rigging, animation, engine integration and self-checking.
 </div>
@@ -47,7 +52,7 @@ That is a measurement question, so I set it up as one: re-run the pipeline on on
 
 **The creature.** All routes target the same enemy from the article, the Scuttler: "a ten-legged alien swarm enemy like a giant armored tick", low and heavy, with a domed charcoal shell split down the front, five clawed legs per side, no eyes and a bristled mouth.
 
-**Tools.** The turntable came from Kling v4 on fal (10 s, 21:9, 1080p) instead of the Higgsfield MCP. The generative 3D baseline was Tripo P2, also through fal. Modeling and rigging used Blender 5.3 in background mode, the game used three.js 0.170.0, and the engine was Unreal Engine 5.8.4 on an Apple M5 laptop with 16 GB of memory.
+**Tools.** The turntable came from Kling v4 on fal (10 s, 21:9, 1080p) instead of the Higgsfield MCP. The generative 3D baseline was Tripo P2, also through fal. Modeling and rigging used Blender 5.3 in background mode, the game used three.js 0.170.0, and the engine was Unreal Engine 5.8.4. Everything, from the Blender runs to the Unreal builds, ran on a single Mac mini (Apple M5, 16 GB of memory); no cloud GPUs.
 
 **The loop.** Every run had the same contract: build the asset, render it from fixed cameras with a shared script, look at the PNGs, fix what is wrong, and log each round in a `rounds.md`. Runs stopped when the result matched the reference or after four rounds (ten for the Unreal build). Costs are the `total_cost_usd` that `claude -p` reports, which is API-equivalent pricing; fal costs are what fal actually billed. All prompts are in the appendix.
 
@@ -120,7 +125,7 @@ The agent's own split of what worked is a fair summary of how an asset fails in 
 |---|---|---|
 | Scale and orientation | usable as is | scale 1.0, faces +Z as its build log claimed; reads as a waist-high crab from 1.7 m eye height |
 | Foot slip | 0.009 m/s | with walk speed set to speed / 0.6, the stride the modeling run reported; at 0.56 it rose to 0.127 m/s |
-| Crowds | 50 fps with 20 alive | 72–112 draw calls, 145k–207k triangles; real-GPU numbers measured by the supervising session on a MacBook Air in Chrome, since the agent's own runs were software-rendered |
+| Crowds | 50 fps with 20 alive | 72–112 draw calls, 145k–207k triangles; real-GPU numbers measured by the supervising session on the Mac mini in Chrome, since the agent's own runs were software-rendered |
 | Death clip | too weak | the body sinks 15 cm and the legs stay planted; it reads as resting, not dying |
 | Missing clips | none made | no idle, attack, turn or hit reaction; queued enemies freeze mid-stride |
 | Colour | too dark | base colours of 0.012–0.045 linear vanish on a dark deck |
@@ -129,7 +134,7 @@ The agent's own split of what worked is a fair summary of how an asset fails in 
 </div>
 
 <div class="grid">
-  <figure><img src="{{ a }}/img/game-swarm.jpg" alt="Twenty Scuttlers surrounding the player" loading="lazy"><figcaption>Twenty alive, 50 fps on a laptop GPU.</figcaption></figure>
+  <figure><img src="{{ a }}/img/game-swarm.jpg" alt="Twenty Scuttlers surrounding the player" loading="lazy"><figcaption>Twenty alive, 50 fps on the Mac mini's GPU.</figcaption></figure>
   <figure><img src="{{ a }}/img/game-die-sheet.jpg" alt="Eight phases of the death animation, nearly identical" loading="lazy"><figcaption>The die clip by phase: eight nearly identical frames.</figcaption></figure>
 </div>
 
@@ -179,10 +184,7 @@ It took 33 minutes and $9.07 over ten self-check rounds. All three GLBs imported
 
 The greybox build looked like a greybox, so a second pass added art. Two Blender runs went in parallel: a 12-piece sci-fi level kit (56 minutes, $6.48, 9.4k triangles) and a four-metre boss, the Brood Mother (31 minutes, $7.30, 16k triangles, 59 bones, 6 clips). A third run spent 77 minutes and $14.12 integrating them in Unreal. It rebuilt the arena from the kit, staged a boss entrance with glowing weak points on her back, added Niagara effects, volumetric fog and colour grading, and rendered a gameplay video from autoplay frames.<sup>1</sup> The autoplay bot kills the boss, and the supervising session's re-run matched (kill at 103 s, 55–60 fps).
 
-<figure>
-  <video src="{{ a }}/video/ue-gameplay.mp4" poster="{{ a }}/img/ue-video-poster.jpg" controls muted playsinline preload="none"></video>
-  <figcaption>36 s of autoplay from the art pass, wave 3 through the boss kill. Recompressed for the web.</figcaption>
-</figure>
+<p>The 36-second autoplay video at the top of this post comes from this art pass, wave 3 through the boss kill.</p>
 
 <div class="grid">
   <figure><img src="{{ a }}/img/ue-boss-roar.jpg" alt="The boss roaring on entry" loading="lazy"><figcaption>Boss entrance.</figcaption></figure>
