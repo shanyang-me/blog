@@ -33,7 +33,7 @@ This study is inspired by Higgsfield's post <a href="https://higgsfield.ai/@higg
 
 ## Coding Agent for Game Pipeline
 
-Each box below is one unattended agent run, with its time, cost and the number of rounds in which it checked its own output and fixed a problem. Arrows show whose output fed whom: the turntable guides the Blender monster and seeds the Tripo mesh, the agent rigs that mesh, and the monsters, rifle, level kit and boss flow into the two games.
+The pipeline runs from a turntable video through 3D assets and rigging to two playable games, each box one unattended agent run.
 
 <figure class="pipeline-graph" markdown="0">
 <p class="scroll-hint">Scroll sideways to see the whole graph →</p>
