@@ -24,7 +24,7 @@ bibtex_key: yang2026agentgameassets
 - **Hours instead of weeks, at prototype quality.** Every asset, both games and the level ran unattended for about 4.7 agent-hours and $68, against an estimated 50–80 person-days of manual work. The comparison holds for prototyping, not for shippable art.
 - **Video reference helps, but only for shape.** With an identical prompt, the Blender agent that watched the turntable built a clearly better monster than the one that only read the text ($5.15 vs $3.47). Countable features (leg count) had to be overridden by the text.
 - **The agent can rig a model it didn't build.** Instead of modeling the monster itself, the agent took a ready-made mesh from Tripo, a 3D generator, and only added the skeleton and the walk and die animations. That cost about the same as modeling from scratch ($1.10 for Tripo plus $4.76 for the agent, against $5.15) and took about 12 minutes instead of 13, and the game draws the result in one call instead of five.
-- **The assets survive real engines.** In a three.js shooter the Blender monster needed no scale or orientation fix and its feet slipped 0.009 m/s. In Unreal, all three GLBs imported with skeletons and clips intact, and a headless greybox build hit 57.9 fps with 0 errors.
+- **The models work in real games.** The same files went into a browser game and into Unreal Engine 5 without anyone fixing them by hand, and both games ran at 50–60 frames per second.
 - **The agent checks its own work, but only in stills.** Every run rendered, inspected and fixed its output for up to four rounds (ten in Unreal) without help. No run ever watched its animations in motion, and that is where the remaining defects are.
 
 ## What Higgsfield showed, and what it leaves out
