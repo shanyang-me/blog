@@ -2,7 +2,7 @@
 layout: post
 title: "Rebuilding an AI Shooter: 4.7 Agent-Hours vs. 50–80 Person-Days"
 date: 2026-11-12
-description: "I replicated a published turntable → Blender → Unreal game pipeline with Claude Code, end to end and unattended: about $68 and 4.7 agent-hours for work estimated at 50–80 person-days by hand. Every step ran from prompts, with no one helping."
+description: "I replicated a published turntable → Blender → Unreal game pipeline with Claude Code, end to end and unattended: about $68 and 4.7 agent-hours for work estimated at 50–80 person-days by hand. Every build ran unattended from a prompt."
 image: /assets/agent-built-game-assets/og.jpg
 permalink: /agent-built-game-assets/
 bibtex_key: yang2026agentgameassets
@@ -15,7 +15,7 @@ bibtex_key: yang2026agentgameassets
 </figure>
 
 <div class="tldr" markdown="1">
-**TL;DR.** Rebuilt Higgsfield's AI-made shooter (monsters, a rifle, a level and a UE5 boss fight) using Claude Code on one Mac mini, unattended. Cost: about 4.7 hours and $68. By hand: an estimated 50–80 person-days and $21,000–55,000. Potential gap: the result has not yet been compared against hand-made art or tested with players. But promising: every step ran from prompts alone, so going from a game idea to something playable can take hours instead of weeks.
+**TL;DR.** Re-ran the pipeline behind Higgsfield's AI-made shooter with Claude Code on one Mac mini, building monsters, a rifle, a level and a UE5 boss fight with unattended agent runs. Cost: about 4.7 hours and $68. By hand: an estimated 50–80 person-days and $21,000–55,000. Potential gap: the result has not yet been compared against hand-made art or tested with players. But promising: every build ran unattended from a prompt, so going from a game idea to something playable can take hours instead of weeks.
 </div>
 
 **Key results at a glance**
@@ -176,7 +176,7 @@ The pipeline runs from a turntable video through 3D assets and rigging to two pl
 
 ## Setup
 
-I chose what to build, which routes to compare and when to stop. A separate Claude Code session, which I call the supervising session, turned those choices into prompts and launched the runs. Every asset and game came from headless `claude -p` runs on Fable 5.2, fully unattended once launched, all on one Mac mini (Apple M5, 16 GB). Each run builds, renders, checks its own pictures and fixes what is wrong, round after round. Claude costs are API-equivalent prices; fal costs are what fal billed. Prompts are in the appendix.
+I chose what to build, which routes to compare and when to stop. A separate Claude Code session, which I call the supervising session, turned those choices into prompts and launched the runs. Apart from the Kling video and the Tripo meshes, every asset and game came from headless `claude -p` runs on Fable 5.2, fully unattended once launched, all on one Mac mini (Apple M5, 16 GB). Each run builds, renders, checks its own pictures and fixes what is wrong, round after round. Claude costs are API-equivalent prices; fal costs are what fal billed. Prompts are in the appendix.
 
 ## 1. Reference: the turntable video
 
@@ -191,7 +191,7 @@ Kling made the turntable in one take (4 min, $2.35), but drew three or four legs
 
 ### The monster, four ways
 
-Same monster, same prompt, four routes. Only the Blender routes produce a skeleton and animations; Tripo is fastest but its meshes cannot move on their own.
+Same monster description, four routes. Only the Blender routes produce a skeleton and animations; Tripo is fastest but its meshes cannot move on their own.
 
 <div class="grid">
   <figure><img src="{{ a }}/img/compare-ref.jpg" alt="Frame from the Kling turntable video" loading="lazy"><figcaption><b>Reference</b> frame</figcaption></figure>
@@ -239,7 +239,7 @@ The agent added a skeleton and walk and die animations to Tripo's mesh without r
 
 ### three.js shooter
 
-The agent built a browser shooter around its monster and play-tested it with a bot (17.6 min, $4.63). Things checkable in a screenshot came out right; things only visible in motion did not.
+The agent built a browser shooter around its monster and play-tested it with a bot (17.6 min, $4.63). Things checkable in a screenshot came out right; problems only visible in motion were not caught.
 
 <div class="embed" data-src="{{ a }}/game/index.html" data-title="Scuttler Swarm, a three.js shooter built by the agent">
   <img class="cover" src="{{ a }}/img/game-poster.jpg" alt="First-person view firing the rifle at Scuttlers" loading="lazy">
@@ -271,7 +271,7 @@ The supervising session installed Unreal, solved four macOS setup issues once, a
 
 <div class="table-wrap" markdown="1">
 
-| What was built | Agent time | Agent cost | By hand (person-days) |
+| What was built | Time | Cost | By hand (person-days) |
 |---|---:|---:|---:|
 | Turntable video (Kling) | 4 min | $2.35 | – |
 | Monster, from video (Blender) | 13.1 min | $5.15 | 6–8 |
@@ -288,7 +288,7 @@ The supervising session installed Unreal, solved four macOS setup issues once, a
 
 </div>
 
-Agent cost is $63.40 of Claude at API-equivalent prices plus $4.55 billed by fal; it leaves out installing Unreal, the supervising session and my time. By-hand figures are estimates from typical industry hours for mid-level indie work, not quotes, and come to roughly $21,000–55,000 at freelance rates.
+The 4.8 h total is 4.7 h of agent runs plus 7 minutes of Kling and Tripo generation. Cost is $63.40 of Claude at API-equivalent prices plus $4.55 billed by fal; it leaves out installing Unreal, the supervising session and my time. By-hand figures are estimates from typical industry hours for mid-level indie work, not quotes, and come to roughly $21,000–55,000 at freelance rates.
 
 ## Limitations and next steps
 
