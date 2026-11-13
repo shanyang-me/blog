@@ -28,7 +28,7 @@ bibtex_key: yang2026agentgameassets
 
 ## Motivation
 
-This study is inspired by Higgsfield's post <a href="https://higgsfield.ai/@higgsfield.studio/blogs/fable-5-2-built-a-playable-shooter-in-3-5-hours">"Fable 5.2 Built a Playable Sci-Fi Shooter in 3.5 Hours"</a>, which shows Claude Code turning videos of each monster into 3D models and then into an Unreal Engine 5 game, shared as one prompt and a 25-second clip. The goal here is to measure what that demo doesn't show: what the pipeline costs, how long each step takes, how many tries it needs, and whether the models work in real games when no one is helping.
+This study is inspired by Higgsfield's post <a href="https://higgsfield.ai/@higgsfield.studio/blogs/fable-5-2-built-a-playable-shooter-in-3-5-hours">"Fable 5.2 Built a Playable Sci-Fi Shooter in 3.5 Hours"</a>, which shows Claude Code turning a 360° video of its enemy into Blender models and then into an Unreal Engine 5 game, shared as one original prompt and a 25-second gameplay clip. The goal here is to measure what that demo doesn't show: what each step costs, how long it takes, how many tries it needs, and how much of it runs with no one helping.
 
 
 ## Coding Agent for Game Pipeline
