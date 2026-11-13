@@ -110,7 +110,7 @@ const groups = {
     if (!exists(page)) return fail('post', `${page} missing`);
     const html = read(page);
     const head = html.split('</head>')[0];
-    for (const needle of ['G-S0EDE26G0K', 'property="og:title"', 'property="og:description"',
+    for (const needle of ['GTM-KVD4ZFQ3', 'property="og:title"', 'property="og:description"',
       'property="og:image"', 'name="twitter:card" content="summary_large_image"']) {
       if (!head.includes(needle)) fail('post', `head missing ${needle}`);
     }
